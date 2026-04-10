@@ -3,6 +3,7 @@ import { IonSearchbar } from "@ionic/react";
 import "../../styles/SearchBar.css";
 
 interface SearchBarProps {
+  id: string;
   value: string;
   onSearch: (texto: string) => void;
   placeholder: string;
@@ -11,6 +12,7 @@ interface SearchBarProps {
 }
 
 const SearchBar: React.FC<SearchBarProps> = ({ 
+  id,
   value, 
   onSearch, 
   placeholder, 
@@ -20,6 +22,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
   return (
     <div className="modal-search-container">
       <IonSearchbar
+        id={id}
         value={value}
         onIonInput={(e) => onSearch(e.detail.value!)}
         placeholder={placeholder}

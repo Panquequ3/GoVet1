@@ -37,6 +37,7 @@ const TutorItem: React.FC<TutorItemProps> = ({
       button
       onClick={onView}
       disabled={disabled}
+      id={`tutor-item-${tutor.rut}`}
     >
       <IonIcon icon={personSharp} slot="start" className="item-icon" />
       <IonLabel style={{ padding: "5px" }}>
@@ -75,6 +76,7 @@ const TutorItem: React.FC<TutorItemProps> = ({
       <IonButtons slot="end">
         <IonButton
           fill="clear"
+          id={`edit-tutor-${tutor.rut}`}
           onClick={(e) => {
             e.stopPropagation();
             onEdit();

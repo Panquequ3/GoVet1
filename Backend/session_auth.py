@@ -63,3 +63,29 @@ def get_current_session_user(request: Request):
     token = auth_header.split(" ", 1)[1].strip()
     payload = decode_session_token(token)
     return payload
+
+@router.post("/dev_login")
+async def dev_login(request: Request):
+    """
+    Endpoint de backdoor para tests. 
+    Ignora Google y genera un token de sesion propia
+    """
+    # Importante: Solo permitir esto si la app corre en modo 'testing'
+    if os.getenv("ENV") != "testing":
+        raise HTTPException(status_code=403, detail="Acceso denegado")
+
+    body = await request.json()
+    email = body.get("email")
+    
+    if not email:
+        raise HTTPException(status_code=400, detail="Email requerido")
+
+    # Creamos 'claims' falsos que simulan lo que vendría de Google
+    mock_claims = {
+        "sub": "user_test_123", # ID de usuario ficticio
+        "email": email
+    }
+
+    # Creamos token
+    token = create_session_token(mock_claims)
+    return {"sessionToken": token, "expiresIn": SESSION_EXPIRE_HOURS, "email": email}

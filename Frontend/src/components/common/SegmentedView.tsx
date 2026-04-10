@@ -26,9 +26,9 @@ const SegmentedView: React.FC<SegmentedViewProps> = ({
           value={selectedSegment}
           onIonChange={(e) => onSegmentChange(e.detail.value as string)}
         >
-          <IonSegmentButton value="tutores">
+          <IonSegmentButton id = "boton_busqueda_tutores" value="tutores">
             <IonIcon icon={personOutline} />
-            <IonLabel>Tutores</IonLabel>
+            <IonLabel id = "header_tutores_busqueda">Tutores</IonLabel>
           </IonSegmentButton>
           <IonSegmentButton value="pacientes">
             <IonIcon icon={pawOutline} />
@@ -40,6 +40,7 @@ const SegmentedView: React.FC<SegmentedViewProps> = ({
           </IonSegmentButton>
         </IonSegment>
         <SearchBar
+          id="Barra_Busqueda"
           value={busqueda}
           onSearch={onSearch}
           placeholder={

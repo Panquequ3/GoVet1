@@ -828,6 +828,15 @@ def actualizar_tutor_paciente(id_paciente: int, rut_tutor: str, db: Session = De
         "codigo_chip": db_paciente.codigo_chip,
     }
 
+# Ruta DELETE para eliminar tutor SOLO sin pacientes
+@app.delete("/tutores/{rut}")
+def eliminar_tutor(rut: str, db: Session = Depends(get_db), current_user: dict = Depends(get_current_session_user)):
+    db_tutor = db.query(models.Tutor).filter(models.Tutor.rut == rut).first()
+    if db_tutor:
+        db.delete(db_tutor)
+        db.commit()
+    return {"message": "Tutor eliminado"}
+
 """ RUTAS PARA ASOCIAR TUTORES Y PACIENTES """
 # Ruta PUT para editar la asociación tutor_paciente
 @app.put("/tutores/{rut_tutor}/pacientes/{id_paciente}", response_model=TutorPacienteResponse)

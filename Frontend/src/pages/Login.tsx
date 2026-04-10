@@ -15,7 +15,7 @@ import {
 } from "@ionic/react";
 import { logoGoogle, pawOutline } from "ionicons/icons";
 import { useHistory } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuth } from "../hooks/useAuth";
 import { renderGoogleButton } from "../utils/googleAuth";
 
@@ -23,9 +23,16 @@ import "../styles/login.css";
 
 const Login: React.FC = () => {
   const history = useHistory();
-  const { loginWithToken } = useAuth();
+  const { loginWithToken, isAuthenticated } = useAuth();
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+
+  // Que hacer si ya esta logeado
+  useEffect(() => {
+    if (isAuthenticated) {
+      history.push("/home"); 
+    }
+  }, [isAuthenticated, history]);
 
   const handleGoogleLogin = async () => {
     try {
