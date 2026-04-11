@@ -40,7 +40,7 @@ describe("Pruebas de Tutores con API", function() {
                 "Authorization": `Bearer ${token}`
             },
         });
-    });z
+    });
 
     it("Debería ir a el apartado de añadir y añadir el tutor", async function() {
         // Ir a el añadir
@@ -123,6 +123,11 @@ describe("Pruebas de Tutores con API", function() {
         );
         await regionOption.click();
         await driver.sleep(500);
+        
+        //Scroll
+
+        await driver.executeScript("window.scrollBy(0, 300);"); //Para el scroll, modificar el 300 en caso de
+        await driver.sleep(500);
 
         // Logica de comuna
         const comunaList = await driver.wait(
@@ -140,6 +145,16 @@ describe("Pruebas de Tutores con API", function() {
             2000
         );
         await comunaOption.click();
+        await driver.sleep(500);
+
+        // Email
+
+        const emailInput = await driver.wait(
+            until.elementLocated(By.css("#email_id input")),
+            2000
+        );
+        await emailInput.clear();
+        await emailInput.sendKeys("govet@paw-solutions.com");
         await driver.sleep(500);
 
         // Luego de esto debe terminar
