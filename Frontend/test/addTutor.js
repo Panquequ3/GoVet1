@@ -54,7 +54,6 @@ describe("Pruebas de Tutores con API", function() {
             until.elementLocated(By.css("#nombre_id input")),
             2000
         );
-        await nombreInput.clear();
         await nombreInput.sendKeys("Martin");
         await driver.sleep(500);
 
@@ -63,7 +62,6 @@ describe("Pruebas de Tutores con API", function() {
             until.elementLocated(By.css("#apellido_id_1 input")),
             2000
         );
-        await apellido1Input.clear();
         await apellido1Input.sendKeys("Jaque");
         await driver.sleep(500);
 
@@ -71,7 +69,6 @@ describe("Pruebas de Tutores con API", function() {
             until.elementLocated(By.css("#apellido_id_2 input")),
             2000
         );
-        await apellido2Input.clear();
         await apellido2Input.sendKeys("Lobos");
         await driver.sleep(500);
 
@@ -81,7 +78,6 @@ describe("Pruebas de Tutores con API", function() {
             until.elementLocated(By.css("#rut_id input")),
             2000
         );
-        await rutInput.clear();
         await rutInput.sendKeys(TEST_RUT);
         await driver.sleep(500);
 
@@ -91,7 +87,6 @@ describe("Pruebas de Tutores con API", function() {
             until.elementLocated(By.css("#direccion_id input")),
             2000
         );
-        await direccionInput.clear();
         await direccionInput.sendKeys("Alguna Parte de Las Animas");
         await driver.sleep(500);
 
@@ -124,9 +119,13 @@ describe("Pruebas de Tutores con API", function() {
         await regionOption.click();
         await driver.sleep(500);
         
-        //Scroll
+        //Scroll y
 
-        await driver.executeScript("window.scrollBy(0, 300);"); //Para el scroll, modificar el 300 en caso de
+        const registroButton = await driver.wait(
+            until.elementLocated(By.css("#registrar_id")),
+            2000
+        );
+        await driver.executeScript("arguments[0].scrollIntoView(true);", registroButton); //Para el scroll, modificar el 300 en caso de
         await driver.sleep(500);
 
         // Logica de comuna
@@ -145,7 +144,7 @@ describe("Pruebas de Tutores con API", function() {
             2000
         );
         await comunaOption.click();
-        await driver.sleep(500);
+        await driver.sleep(800);
 
         // Email
 
@@ -159,10 +158,7 @@ describe("Pruebas de Tutores con API", function() {
 
         // Luego de esto debe terminar
         
-        const registroButton = await driver.wait(
-            until.elementLocated(By.css("#registrar_id")),
-            2000
-        );
+
         await registroButton.click();
         await driver.sleep(500);
 
@@ -170,3 +166,5 @@ describe("Pruebas de Tutores con API", function() {
 
     });
 });
+
+//Farmeando commits MUAHAAHAHHAHAH
