@@ -9,6 +9,30 @@ describe("Pruebas de Tutores con API", function() {
     let token;
     const TEST_RUT = "99.999.999-9";
     const DELAY_DEMO = 2000;
+    const VERIFY_SUCCESS_TOAST = true;
+    const SUCCESS_TOAST_TEXT = "Tutor registrado exitosamente";
+
+    async function waitForSuccessToast(expectedMessage, timeout = 6000) {
+        await driver.wait(
+            until.elementLocated(By.css("ion-toast.toast-success")),
+            timeout
+        );
+
+        await driver.wait(async () => {
+            return await driver.executeScript(
+                `
+                const toast = document.querySelector('ion-toast.toast-success');
+                if (!toast) return false;
+
+                const isHidden = toast.classList.contains('overlay-hidden') || toast.classList.contains('toast-hidden');
+                const message = toast.shadowRoot?.querySelector('.toast-message')?.textContent?.trim() || '';
+
+                return !isHidden && message.includes(arguments[0]);
+                `,
+                expectedMessage
+            );
+        }, timeout);
+    }
 
     before(async function() {
         // Obtener el token del backdoor
@@ -172,6 +196,11 @@ describe("Pruebas de Tutores con API", function() {
         
         await registroButton.click();
         await driver.sleep(500);
+
+        if (VERIFY_SUCCESS_TOAST) {
+            await waitForSuccessToast(SUCCESS_TOAST_TEXT);
+            console.log("Toast de exito detectado correctamente.");
+        }
 
 
         console.log("Test completado: Tutor añadido.");
