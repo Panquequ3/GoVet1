@@ -54,23 +54,35 @@ describe("Pruebas de Tutores con API", function() {
             until.elementLocated(By.css("#nombre_id input")),
             2000
         );
+        await nombreInput.click();
+        await driver.sleep(800);
         await nombreInput.sendKeys("Martin");
         await driver.sleep(500);
+        await nombreInput.click();
+        await driver.sleep(800);
 
         // Apellidos
         const apellido1Input = await driver.wait(
             until.elementLocated(By.css("#apellido_id_1 input")),
             2000
         );
+        await apellido1Input.click();
+        await driver.sleep(800);
         await apellido1Input.sendKeys("Jaque");
         await driver.sleep(500);
+        await apellido1Input.click();
+        await driver.sleep(800);
 
         const apellido2Input = await driver.wait(
             until.elementLocated(By.css("#apellido_id_2 input")),
             2000
         );
+        await apellido2Input.click();
+        await driver.sleep(800);
         await apellido2Input.sendKeys("Lobos");
         await driver.sleep(500);
+        await apellido2Input.click();
+        await driver.sleep(800);
 
 
         // Rut
@@ -78,8 +90,12 @@ describe("Pruebas de Tutores con API", function() {
             until.elementLocated(By.css("#rut_id input")),
             2000
         );
+        await rutInput.click();
+        await driver.sleep(800);
         await rutInput.sendKeys(TEST_RUT);
         await driver.sleep(500);
+        await rutInput.click();
+        await driver.sleep(800);
 
 
         // Direccion
@@ -87,8 +103,12 @@ describe("Pruebas de Tutores con API", function() {
             until.elementLocated(By.css("#direccion_id input")),
             2000
         );
+        await direccionInput.click();
+        await driver.sleep(800);
         await direccionInput.sendKeys("Alguna Parte de Las Animas");
         await driver.sleep(500);
+        await direccionInput.click();
+        await driver.sleep(800);
 
 
         // Telefono
@@ -96,7 +116,8 @@ describe("Pruebas de Tutores con API", function() {
             until.elementLocated(By.css("#id_telefono input")),
             2000
         );
-        await telefonoInput.clear();
+        await telefonoInput.click();
+        await driver.sleep(800);
         await telefonoInput.sendKeys("99999999");
         await driver.sleep(500);
 
@@ -136,7 +157,7 @@ describe("Pruebas de Tutores con API", function() {
         await comunaList.click();
         await driver.sleep(500);
 
-        await comunaList.sendKeys("San");
+        await comunaList.sendKeys("Ar");
         await driver.sleep(1000);
 
         const comunaOption = await driver.wait(
@@ -152,15 +173,18 @@ describe("Pruebas de Tutores con API", function() {
             until.elementLocated(By.css("#email_id input")),
             2000
         );
-        await emailInput.clear();
+        await emailInput.click();
+        await driver.sleep(800);
         await emailInput.sendKeys("govet@paw-solutions.com");
         await driver.sleep(500);
+        await emailInput.click();
+        await driver.sleep(800);
 
         // Luego de esto debe terminar
         
-
         await registroButton.click();
         await driver.sleep(500);
+
 
         console.log("Test completado: Tutor añadido.");
 
