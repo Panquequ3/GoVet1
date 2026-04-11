@@ -362,6 +362,7 @@ const RegistroTutor: React.FC<RegistroTutorProps> = ({
               <IonCol>
                 <IonItem lines="none">
                   <IonInput
+                    id="nombre_id"
                     type="text"
                     labelPlacement="stacked"
                     fill="outline"
@@ -382,6 +383,7 @@ const RegistroTutor: React.FC<RegistroTutorProps> = ({
               <IonCol>
                 <IonItem lines="none" className="apellido-paterno">
                   <IonInput
+                    id="apellido_id_1"
                     required
                     type="text"
                     labelPlacement="stacked"
@@ -400,6 +402,7 @@ const RegistroTutor: React.FC<RegistroTutorProps> = ({
               <IonCol>
                 <IonItem lines="none" className="apellido-materno">
                   <IonInput
+                    id="apellido_id_2"
                     className="apellido-materno"
                     label="Segundo Apellido"
                     type="text"
@@ -424,6 +427,7 @@ const RegistroTutor: React.FC<RegistroTutorProps> = ({
               <IonCol>
                 <IonItem lines="none">
                   <IonInput
+                    id="direccion_id"
                     type="text"
                     labelPlacement="stacked"
                     fill="outline"
@@ -482,6 +486,7 @@ const RegistroTutor: React.FC<RegistroTutorProps> = ({
               <IonCol>
                 <IonItem lines="none">
                   <IonInput
+                    id="email_id"
                     required
                     type="email"
                     labelPlacement="stacked"
@@ -503,6 +508,7 @@ const RegistroTutor: React.FC<RegistroTutorProps> = ({
           <IonRow>
             <IonCol className="ion-text-center">
               <IonButton
+                id="registrar_id"
                 type="submit"
                 className="custom-button"
                 expand="block"

@@ -34,6 +34,7 @@ export const SelectorComuna: React.FC<SelectorComunaProps> = ({
     <>
       <IonItem lines="none" className="searchbar-container">
         <IonInput
+          id = "comuna_id"
           labelPlacement="stacked"
           fill="outline"
           placeholder={
@@ -78,6 +79,7 @@ export const SelectorComuna: React.FC<SelectorComunaProps> = ({
               const formattedName = formatComunaName(comuna.name);
               return (
                 <IonItem
+                  id = "comuna_option"
                   key={`${comuna.id || index}`}
                   button
                   onClick={() =>

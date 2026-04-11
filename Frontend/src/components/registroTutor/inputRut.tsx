@@ -107,6 +107,7 @@ const InputRut = forwardRef<InputRutHandle, InputRutProps>(
     return (
       <IonItem>
         <IonInput
+          id="rut_id"
           type="text"
           labelPlacement="stacked"
           fill="outline"

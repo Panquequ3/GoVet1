@@ -107,6 +107,7 @@ const InputTelefono = forwardRef<InputTelefonoHandle, InputTelefonoProps>(
     return (
       <IonItem>
         <IonInput
+          id="id_telefono"
           type="tel"
           labelPlacement="stacked"
           fill="outline"

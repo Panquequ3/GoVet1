@@ -66,6 +66,7 @@ export const SelectorRegion: React.FC<SelectorRegionProps> = ({
     <div ref={wrapperRef} style={{ position: "relative", width: "100%" }}>
       <IonItem lines="none" className="searchbar-container">
         <IonInput
+          id="region_id"
           labelPlacement="stacked"
           fill="outline"
           placeholder="Buscar región..."
@@ -126,6 +127,7 @@ export const SelectorRegion: React.FC<SelectorRegionProps> = ({
                 const formattedName = formatRegionName(region);
                 return (
                   <IonItem
+                    id="region_option"
                     key={region.id}
                     button
                     onClick={() =>
