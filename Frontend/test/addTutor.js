@@ -56,9 +56,7 @@ describe("Pruebas de Tutores con API", function() {
         );
         await nombreInput.click();
         await driver.sleep(800);
-        await nombreInput.sendKeys("Martin");
-        await driver.sleep(500);
-        await nombreInput.click();
+        await nombreInput.sendKeys("Martin", Key.TAB);
         await driver.sleep(800);
 
         // Apellidos
@@ -68,9 +66,7 @@ describe("Pruebas de Tutores con API", function() {
         );
         await apellido1Input.click();
         await driver.sleep(800);
-        await apellido1Input.sendKeys("Jaque");
-        await driver.sleep(500);
-        await apellido1Input.click();
+        await apellido1Input.sendKeys("Jaque", Key.TAB);
         await driver.sleep(800);
 
         const apellido2Input = await driver.wait(
@@ -79,9 +75,7 @@ describe("Pruebas de Tutores con API", function() {
         );
         await apellido2Input.click();
         await driver.sleep(800);
-        await apellido2Input.sendKeys("Lobos");
-        await driver.sleep(500);
-        await apellido2Input.click();
+        await apellido2Input.sendKeys("Lobos", Key.TAB);
         await driver.sleep(800);
 
 
@@ -92,9 +86,7 @@ describe("Pruebas de Tutores con API", function() {
         );
         await rutInput.click();
         await driver.sleep(800);
-        await rutInput.sendKeys(TEST_RUT);
-        await driver.sleep(500);
-        await rutInput.click();
+        await rutInput.sendKeys(TEST_RUT, Key.TAB);
         await driver.sleep(800);
 
 
@@ -105,9 +97,7 @@ describe("Pruebas de Tutores con API", function() {
         );
         await direccionInput.click();
         await driver.sleep(800);
-        await direccionInput.sendKeys("Alguna Parte de Las Animas");
-        await driver.sleep(500);
-        await direccionInput.click();
+        await direccionInput.sendKeys("Alguna Parte de Las Animas", Key.TAB);
         await driver.sleep(800);
 
 
@@ -118,7 +108,7 @@ describe("Pruebas de Tutores con API", function() {
         );
         await telefonoInput.click();
         await driver.sleep(800);
-        await telefonoInput.sendKeys("99999999");
+        await telefonoInput.sendKeys("99999999", Key.TAB);
         await driver.sleep(500);
 
         // Logica de region
@@ -175,9 +165,7 @@ describe("Pruebas de Tutores con API", function() {
         );
         await emailInput.click();
         await driver.sleep(800);
-        await emailInput.sendKeys("govet@paw-solutions.com");
-        await driver.sleep(500);
-        await emailInput.click();
+        await emailInput.sendKeys("govet@paw-solutions.com", Key.TAB);
         await driver.sleep(800);
 
         // Luego de esto debe terminar

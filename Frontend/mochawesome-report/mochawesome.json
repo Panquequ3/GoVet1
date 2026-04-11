@@ -1,14 +1,14 @@
 {
   "stats": {
-    "suites": 1,
-    "tests": 1,
-    "passes": 1,
+    "suites": 2,
+    "tests": 2,
+    "passes": 2,
     "pending": 0,
     "failures": 0,
-    "start": "2026-04-10T23:19:46.632Z",
-    "end": "2026-04-10T23:20:03.252Z",
-    "duration": 16620,
-    "testsRegistered": 1,
+    "start": "2026-04-11T03:01:55.496Z",
+    "end": "2026-04-11T03:02:39.362Z",
+    "duration": 43866,
+    "testsRegistered": 2,
     "passPercent": 100,
     "pendingPercent": 0,
     "other": 0,
@@ -18,16 +18,16 @@
   },
   "results": [
     {
-      "uuid": "4b66f256-c28f-47ff-acdb-aafdd839866c",
+      "uuid": "4249b03d-c972-48d5-942e-af09a237b080",
       "title": "",
-      "fullFile": "/Users/ilovecoffee/Desktop/GoVet_folder/GoVet/Frontend/test/searchTest.js",
-      "file": "/test/searchTest.js",
+      "fullFile": "",
+      "file": "",
       "beforeHooks": [
         {
           "title": "\"before all\" hook: beforeAll in \"{root}\"",
           "fullTitle": "\"before all\" hook: beforeAll in \"{root}\"",
           "timedOut": false,
-          "duration": 2,
+          "duration": 1,
           "state": null,
           "speed": null,
           "pass": false,
@@ -36,8 +36,8 @@
           "context": null,
           "code": "console.log(\"-----------------------------------------\");\nconsole.log(\"COMPROBANDO SESIÓN DEV...\");\nconsole.log(\"-----------------------------------------\");\n\nglobal.ACTIVE_SESSION_TOKEN = await getValidToken();\nconsole.log(\"-----------------------------------------\");\nconsole.log(\"SESIÓN LISTA. INICIANDO TESTS...\");\nconsole.log(\"-----------------------------------------\");",
           "err": {},
-          "uuid": "42d9e2e0-fbb2-45a5-89c4-5d8ece97c168",
-          "parentUUID": "4b66f256-c28f-47ff-acdb-aafdd839866c",
+          "uuid": "c343eb3f-e7f0-4211-9ace-9fe588adc9f3",
+          "parentUUID": "4249b03d-c972-48d5-942e-af09a237b080",
           "isHook": true,
           "skipped": false
         }
@@ -46,26 +46,26 @@
       "tests": [],
       "suites": [
         {
-          "uuid": "24b6f9fb-ee44-4367-8cb2-5d48ab0a483c",
+          "uuid": "b1be8281-9d6c-4bbf-8223-f4c23b8e0430",
           "title": "Pruebas de Tutores con API",
-          "fullFile": "/Users/ilovecoffee/Desktop/GoVet_folder/GoVet/Frontend/test/searchTest.js",
-          "file": "/test/searchTest.js",
+          "fullFile": "/Users/ilovecoffee/Desktop/govet1/GoVet1/Frontend/test/addTutor.js",
+          "file": "/test/addTutor.js",
           "beforeHooks": [
             {
               "title": "\"before all\" hook in \"Pruebas de Tutores con API\"",
               "fullTitle": "Pruebas de Tutores con API \"before all\" hook in \"Pruebas de Tutores con API\"",
               "timedOut": false,
-              "duration": 4419,
+              "duration": 4078,
               "state": null,
               "speed": null,
               "pass": false,
               "fail": false,
               "pending": false,
               "context": null,
-              "code": "// Obtener el token del backdoor\ntoken = await getValidToken();\n// Crear el tutor de prueba\nconst tutorData = {\n    rut: TEST_RUT,\n    nombre: \"Tutor\",\n    apellido_paterno: \"Prueba\",\n    apellido_materno: \"Selenium\",\n    direccion: \"Calle Test 123\",\n    comuna: \"Valdivia\",\n    region: \"Los Ríos\",\n    telefono: 912345678, \n    celular: 912345678,\n    email: \"test@govet.cl\"\n};\nconst response = await fetch(\"http://127.0.0.1:4007/api/tutores/\", {\n    method: \"POST\",\n    headers: {\n        \"Content-Type\": \"application/json\",\n        \"Authorization\": `Bearer ${token}`,\n        \"Connection\": \"close\" \n    },\n    body: JSON.stringify(tutorData)\n});\nif (!response.ok) {\n    const errorDetail = await response.json();\n    console.log(\"ERROR DEL BACKEND:\", JSON.stringify(errorDetail, null, 2));\n    throw new Error(`Error ${response.status}: No se pudo crear el tutor`);\n}\ndriver = await new Builder().forBrowser(\"firefox\").build();\n\n// Cargar pagina para tener contexto\nawait driver.get(\"http://localhost:3007/\");\n// Inyectar el token\nawait driver.executeScript(\n    `localStorage.setItem('govet_session_token', '${token}');`\n);\n// Volver a la raiz para ser redireccionado y liberarse de la ruta login\nawait driver.get(\"http://localhost:3007/\");",
+              "code": "// Obtener el token del backdoor\ntoken = await getValidToken();\ndriver = await new Builder().forBrowser(\"firefox\").build();\n\n// Cargar pagina para tener contexto\nawait driver.get(\"http://localhost:3007/\");\n// Inyectar el token\nawait driver.executeScript(\n    `localStorage.setItem('govet_session_token', '${token}');`\n);\n// Volver a la raiz para ser redireccionado y liberarse de la ruta login\nawait driver.get(\"http://localhost:3007/\");",
               "err": {},
-              "uuid": "db4c7377-66dd-4004-8f19-c088b09e67ed",
-              "parentUUID": "24b6f9fb-ee44-4367-8cb2-5d48ab0a483c",
+              "uuid": "b3068742-52ba-4ec4-aca9-bd14ebe4336a",
+              "parentUUID": "b1be8281-9d6c-4bbf-8223-f4c23b8e0430",
               "isHook": true,
               "skipped": false
             }
@@ -75,7 +75,7 @@
               "title": "\"after all\" hook in \"Pruebas de Tutores con API\"",
               "fullTitle": "Pruebas de Tutores con API \"after all\" hook in \"Pruebas de Tutores con API\"",
               "timedOut": false,
-              "duration": 3761,
+              "duration": 3607,
               "state": null,
               "speed": null,
               "pass": false,
@@ -84,8 +84,85 @@
               "context": null,
               "code": "await driver.sleep(3000);\nif (driver) await driver.quit();\n\n// Eliminar usuario de prueba\nawait fetch(`http://localhost:4007/api/tutores/${TEST_RUT}`, {\n    method: \"DELETE\",\n    headers: {\n        \"Content-Type\": \"application/json\",\n        \"Authorization\": `Bearer ${token}`\n    },\n});",
               "err": {},
-              "uuid": "c918cdf2-2954-4d99-8cf7-1d43d56da723",
-              "parentUUID": "24b6f9fb-ee44-4367-8cb2-5d48ab0a483c",
+              "uuid": "57a2260f-9518-4bd3-8d85-a39080be1249",
+              "parentUUID": "b1be8281-9d6c-4bbf-8223-f4c23b8e0430",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Debería ir a el apartado de añadir y añadir el tutor",
+              "fullTitle": "Pruebas de Tutores con API Debería ir a el apartado de añadir y añadir el tutor",
+              "timedOut": false,
+              "duration": 19715,
+              "state": "passed",
+              "speed": "slow",
+              "pass": true,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Ir a el añadir\nawait driver.get(\"http://localhost:3007/registro-tutor\");\nawait driver.sleep(DELAY_DEMO);\n// Buscar todos los inputs\n// Nombre\nconst nombreInput = await driver.wait(\n    until.elementLocated(By.css(\"#nombre_id input\")),\n    2000\n);\nawait nombreInput.click();\nawait driver.sleep(800);\nawait nombreInput.sendKeys(\"Martin\", Key.TAB);\nawait driver.sleep(800);\n// Apellidos\nconst apellido1Input = await driver.wait(\n    until.elementLocated(By.css(\"#apellido_id_1 input\")),\n    2000\n);\nawait apellido1Input.click();\nawait driver.sleep(800);\nawait apellido1Input.sendKeys(\"Jaque\", Key.TAB);\nawait driver.sleep(800);\nconst apellido2Input = await driver.wait(\n    until.elementLocated(By.css(\"#apellido_id_2 input\")),\n    2000\n);\nawait apellido2Input.click();\nawait driver.sleep(800);\nawait apellido2Input.sendKeys(\"Lobos\", Key.TAB);\nawait driver.sleep(800);\n\n// Rut\nconst rutInput = await driver.wait(\n    until.elementLocated(By.css(\"#rut_id input\")),\n    2000\n);\nawait rutInput.click();\nawait driver.sleep(800);\nawait rutInput.sendKeys(TEST_RUT, Key.TAB);\nawait driver.sleep(800);\n\n// Direccion\nconst direccionInput = await driver.wait(\n    until.elementLocated(By.css(\"#direccion_id input\")),\n    2000\n);\nawait direccionInput.click();\nawait driver.sleep(800);\nawait direccionInput.sendKeys(\"Alguna Parte de Las Animas\", Key.TAB);\nawait driver.sleep(800);\n\n// Telefono\nconst telefonoInput = await driver.wait(\n    until.elementLocated(By.css(\"#id_telefono input\")),\n    2000\n);\nawait telefonoInput.click();\nawait driver.sleep(800);\nawait telefonoInput.sendKeys(\"99999999\", Key.TAB);\nawait driver.sleep(500);\n// Logica de region\nconst regionList = await driver.wait(\n    until.elementLocated(By.css(\"#region_id input\")),\n    2000\n);\nawait regionList.click();\nawait driver.sleep(500);\nawait regionList.sendKeys(\"V\");\nawait driver.sleep(1000);\nconst regionOption = await driver.wait(\n    until.elementLocated(By.css(\"ion-item[id='region_option']\")),\n    2000\n);\nawait regionOption.click();\nawait driver.sleep(500);\n\n//Scroll y\nconst registroButton = await driver.wait(\n    until.elementLocated(By.css(\"#registrar_id\")),\n    2000\n);\nawait driver.executeScript(\"arguments[0].scrollIntoView(true);\", registroButton); //Para el scroll, modificar el 300 en caso de\nawait driver.sleep(500);\n// Logica de comuna\nconst comunaList = await driver.wait(\n    until.elementLocated(By.css(\"#comuna_id input\")),\n    2000\n);\nawait comunaList.click();\nawait driver.sleep(500);\nawait comunaList.sendKeys(\"Ar\");\nawait driver.sleep(1000);\nconst comunaOption = await driver.wait(\n    until.elementLocated(By.css(\"ion-item[id='comuna_option']\")),\n    2000\n);\nawait comunaOption.click();\nawait driver.sleep(800);\n// Email\nconst emailInput = await driver.wait(\n    until.elementLocated(By.css(\"#email_id input\")),\n    2000\n);\nawait emailInput.click();\nawait driver.sleep(800);\nawait emailInput.sendKeys(\"govet@paw-solutions.com\", Key.TAB);\nawait driver.sleep(800);\n// Luego de esto debe terminar\n\nawait registroButton.click();\nawait driver.sleep(500);\n\nconsole.log(\"Test completado: Tutor añadido.\");",
+              "err": {},
+              "uuid": "e9922fa0-2fc6-47b6-b9d7-43568222551e",
+              "parentUUID": "b1be8281-9d6c-4bbf-8223-f4c23b8e0430",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [
+            "e9922fa0-2fc6-47b6-b9d7-43568222551e"
+          ],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 19715,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 0
+        },
+        {
+          "uuid": "c6e7aec7-1754-4c4a-a5f9-c423c3b00afd",
+          "title": "Pruebas de Tutores con API",
+          "fullFile": "/Users/ilovecoffee/Desktop/govet1/GoVet1/Frontend/test/searchTest.js",
+          "file": "/test/searchTest.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook in \"Pruebas de Tutores con API\"",
+              "fullTitle": "Pruebas de Tutores con API \"before all\" hook in \"Pruebas de Tutores con API\"",
+              "timedOut": false,
+              "duration": 4528,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "// Obtener el token del backdoor\ntoken = await getValidToken();\n// Crear el tutor de prueba\nconst tutorData = {\n    rut: TEST_RUT,\n    nombre: \"Tutor\",\n    apellido_paterno: \"Prueba\",\n    apellido_materno: \"Selenium\",\n    direccion: \"Calle Test 123\",\n    comuna: \"Valdivia\",\n    region: \"Los Ríos\",\n    telefono: 912345678, \n    celular: 912345678,\n    email: \"test@govet.cl\"\n};\nconst response = await fetch(\"http://127.0.0.1:4007/api/tutores/\", {\n    method: \"POST\",\n    headers: {\n        \"Content-Type\": \"application/json\",\n        \"Authorization\": `Bearer ${token}`,\n        \"Connection\": \"close\" \n    },\n    body: JSON.stringify(tutorData)\n});\nif (!response.ok) {\n    const errorDetail = await response.json();\n    console.log(\"ERROR DEL BACKEND:\", JSON.stringify(errorDetail, null, 2));\n    throw new Error(`Error ${response.status}: No se pudo crear el tutor`);\n}\ndriver = await new Builder().forBrowser(\"firefox\").build();\n\n// Cargar pagina para tener contexto\nawait driver.get(\"http://localhost:3007/\");\n// Inyectar el token\nawait driver.executeScript(\n    `localStorage.setItem('govet_session_token', '${token}');`\n);\n// Volver a la raiz para ser redireccionado y liberarse de la ruta login\nawait driver.get(\"http://localhost:3007/\");",
+              "err": {},
+              "uuid": "0610d00b-5c12-44de-befa-b5e13a06a680",
+              "parentUUID": "c6e7aec7-1754-4c4a-a5f9-c423c3b00afd",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook in \"Pruebas de Tutores con API\"",
+              "fullTitle": "Pruebas de Tutores con API \"after all\" hook in \"Pruebas de Tutores con API\"",
+              "timedOut": false,
+              "duration": 3547,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "await driver.sleep(3000);\nif (driver) await driver.quit();\n\n// Eliminar usuario de prueba\nawait fetch(`http://localhost:4007/api/tutores/${TEST_RUT}`, {\n    method: \"DELETE\",\n    headers: {\n        \"Content-Type\": \"application/json\",\n        \"Authorization\": `Bearer ${token}`\n    },\n});",
+              "err": {},
+              "uuid": "54caa2ef-2664-4438-95f4-93616c749099",
+              "parentUUID": "c6e7aec7-1754-4c4a-a5f9-c423c3b00afd",
               "isHook": true,
               "skipped": false
             }
@@ -95,7 +172,7 @@
               "title": "Debería encontrar al tutor en la lista de búsqueda",
               "fullTitle": "Pruebas de Tutores con API Debería encontrar al tutor en la lista de búsqueda",
               "timedOut": false,
-              "duration": 8426,
+              "duration": 8382,
               "state": "passed",
               "speed": "slow",
               "pass": true,
@@ -104,20 +181,20 @@
               "context": null,
               "code": "await driver.get(\"http://localhost:3007/ver\");\nawait driver.sleep(DELAY_DEMO);\nconst botonTutores = await driver.wait(\n    until.elementLocated(By.css(\"#boton_busqueda_tutores\")),\n    2000\n);\nbotonTutores.click();\nawait driver.sleep(DELAY_DEMO);\nconst buscadorInput = await driver.wait(\n    until.elementLocated(By.css(\"#Barra_Busqueda input\")), \n    15000 \n);\nawait driver.wait(until.elementIsVisible(buscadorInput), 5000);\nawait buscadorInput.clear();\nawait buscadorInput.sendKeys(TEST_RUT, Key.ENTER);\nawait driver.sleep(DELAY_DEMO);\nconst filaTutor = await driver.wait(\nuntil.elementLocated(By.id(`tutor-item-${TEST_RUT}`)),\n    10000 \n); \nconst nombreVisible = await filaTutor.getText();\nnombreVisible.should.contain(\"Tutor Prueba\");\nawait filaTutor.click();\nawait driver.sleep(DELAY_DEMO);\nconsole.log(\"Test completado: Tutor encontrado y detalle abierto.\");",
               "err": {},
-              "uuid": "0f7b9485-bccb-4226-a7fa-8fdaed4ee7e0",
-              "parentUUID": "24b6f9fb-ee44-4367-8cb2-5d48ab0a483c",
+              "uuid": "b6903bf5-8105-44f8-ac1e-38491ecc2bda",
+              "parentUUID": "c6e7aec7-1754-4c4a-a5f9-c423c3b00afd",
               "isHook": false,
               "skipped": false
             }
           ],
           "suites": [],
           "passes": [
-            "0f7b9485-bccb-4226-a7fa-8fdaed4ee7e0"
+            "b6903bf5-8105-44f8-ac1e-38491ecc2bda"
           ],
           "failures": [],
           "pending": [],
           "skipped": [],
-          "duration": 8426,
+          "duration": 8382,
           "root": false,
           "rootEmpty": false,
           "_timeout": 0
