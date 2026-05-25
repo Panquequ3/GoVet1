@@ -1,4 +1,6 @@
 # Componente: Persistencia de datos
+import sentry_sdk
+from sentry_sdk.integrations.fastapi import FastApiIntegration
 import asyncio
 from datetime import date, datetime
 try:
@@ -57,6 +59,16 @@ from session_auth import router as session_auth_router, get_current_session_user
 
 # Cargar variables de entorno desde el archivo .env
 load_dotenv()
+
+SENTRY_DSN = os.getenv("SENTRY_DSN")
+
+sentry_sdk.init(
+    dsn=SENTRY_DSN,
+    enable_logs=True,
+    integrations=[FastApiIntegration()],
+    traces_sample_rate=1.0,
+    send_default_pii=True,
+)
 
 app = FastAPI()
 #SCOPES = ["https://www.googleapis.com/auth/calendar"]
@@ -440,6 +452,15 @@ def crear_tutor(tutor: TutorCreate, db: Session = Depends(get_db), current_user:
     db.add(db_tutor)
     db.commit()
     db.refresh(db_tutor)
+
+    with sentry_sdk.push_scope() as scope:
+        scope.set_tag("name", db_tutor.nombre)
+        scope.set_tag("rut", db_tutor.rut)
+        sentry_sdk.capture_message(
+            "User registered",
+            level="info"
+        )
+
     return db_tutor
 
 # Ruta GET para obtener un dueño por su RUT
@@ -563,7 +584,15 @@ def crear_paciente(paciente: PacienteCreate, db: Session = Depends(get_db), curr
     db.add(db_paciente)
     db.commit()
     db.refresh(db_paciente)
+
+    with sentry_sdk.push_scope() as scope:
+        scope.set_tag("name", paciente.nombre)
+        sentry_sdk.capture_message(
+            "Patient registered",
+            level="info"
+        )
     
+
     # Usar helper function para construir la respuesta
     return paciente_to_response(db_paciente, db)
 
@@ -784,6 +813,15 @@ def actualizar_paciente(id_paciente: int, paciente: PacienteCreate, db: Session 
     db.commit()
     db.refresh(db_paciente)
 
+    with sentry_sdk.push_scope() as scope:
+        scope.set_tag("name", paciente.nombre)
+        scope.set_tag("patient_id", id_paciente)
+        sentry_sdk.capture_message(
+            "Patient data modified",
+            level="info"
+        )
+    
+
     return {
         "id_paciente": db_paciente.id_paciente,
         "nombre": db_paciente.nombre,
@@ -816,6 +854,17 @@ def actualizar_tutor_paciente(id_paciente: int, rut_tutor: str, db: Session = De
         db_tutor_paciente = models.TutorPaciente(rut=rut_tutor, id_paciente=id_paciente, fecha=date.today())
         db.add(db_tutor_paciente)
     db.commit()
+
+    with sentry_sdk.push_scope() as scope:
+        scope.set_tag("tutor_id", rut_tutor)
+        scope.set_tag("patient_id", id_paciente)
+        sentry_sdk.capture_message(
+            "Patient ownership changed",
+            level="info"
+        )
+
+
+
     return {
         "id_paciente": db_paciente.id_paciente,
         "nombre": db_paciente.nombre,
@@ -850,6 +899,15 @@ def editar_asociacion_tutor_paciente(rut_tutor: str, id_paciente: int, fecha: da
     db_tutor_paciente.fecha = fecha
     db.commit()
     db.refresh(db_tutor_paciente)
+
+    with sentry_sdk.push_scope() as scope:
+        scope.set_tag("tutor_id", rut_tutor)
+        scope.set_tag("tutor_id", id_paciente)
+        sentry_sdk.capture_message(
+            "Patient ownership changed",
+            level="info"
+        )
+
     
 
 # ruta put para editar la informacion de un tutor
@@ -865,6 +923,16 @@ def editar_tutor(rut: str, tutor: TutorCreate, db: Session = Depends(get_db), cu
         setattr(db_tutor, key, value)
     db.commit()
     db.refresh(db_tutor)
+
+    with sentry_sdk.push_scope() as scope:
+        scope.set_tag("rut", rut)
+        scope.set_tag("name", TutorCreate.nombre)
+        sentry_sdk.capture_message(
+            "Tutor changed data",
+            level="info"
+        )
+
+
     return db_tutor
 
 # Ruta POST para asociar un tutor a un paciente (tutor_paciente)
@@ -883,6 +951,16 @@ def asociar_tutor_a_paciente(rut_tutor: str, id_paciente: int, fecha: date, db: 
     db.add(db_tutor_paciente)
     db.commit()
     db.refresh(db_tutor_paciente)
+
+    with sentry_sdk.push_scope() as scope:
+        scope.set_tag("tutor_id", rut_tutor)
+        scope.set_tag("patient_id", id_paciente)
+        sentry_sdk.capture_message(
+            "Patient assigned to tutor",
+            level="info"
+        )
+
+
     return db_tutor_paciente
 
 # Ruta para ver mascotas asociadas a un tutor
