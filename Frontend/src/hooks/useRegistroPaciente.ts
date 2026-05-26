@@ -6,6 +6,13 @@ import {
   PacienteCreate,
 } from "../api/pacientes";
 import { useAuth } from "./useAuth";
+import * as Sentry from "@sentry/react";
+
+Sentry.init({
+  dsn: import.meta.env.VITE_SENTRY_DSN,
+  integrations: [new Sentry.BrowserTracing()],
+  tracesSampleRate: 1.0,
+});
 
 export interface FormData {
   nombre: string;
@@ -51,16 +58,16 @@ export const useRegistroPaciente = () => {
     //console.log("🔄 Cargando razas para:", nombreEspecie);
     setLoadingRazas(true);
     try {
-      const razas = await obtenerRazas(nombreEspecie);
-      //console.log("✅ Razas cargadas:", razas ? razas.length : 0, "razas");
-      setRazasData(razas || []);
+        const razas = await obtenerRazas(nombreEspecie);
+        setRazasData(razas || []);
     } catch (error) {
-      console.error("❌ Error cargando razas:", error);
-      setRazasData([]);
-      setToastMessage("Error de conexión al cargar razas");
-      setShowToast(true);
+        Sentry.captureException(error);
+        console.error("Error cargando razas:", error);
+        setRazasData([]);
+        setToastMessage("Error de conexión al cargar razas");
+        setShowToast(true);
     } finally {
-      setLoadingRazas(false);
+        setLoadingRazas(false);
     }
   }, []);
 
@@ -187,6 +194,15 @@ export const useRegistroPaciente = () => {
 
       setToastMessage("Paciente registrado y asociado al tutor exitosamente");
 
+      // Log exitoso en Sentry
+      Sentry.withScope((scope) => {
+        scope.setTag("accion", "registro_paciente");
+        scope.setTag("paciente", formData.nombre);
+        scope.setTag("tutor_rut", formData.rut_tutor);
+        scope.setLevel("info");
+        Sentry.captureMessage("Paciente registrado exitosamente");
+      });
+
       // Limpiar formulario
       setFormData({
         nombre: "",
@@ -206,6 +222,15 @@ export const useRegistroPaciente = () => {
       setToastMessage(
         "Error al registrar paciente. Revisa los datos e intenta de nuevo."
       );
+
+      // Log de error en Sentry
+      Sentry.withScope((scope) => {
+        scope.setTag("accion", "registro_paciente");
+        scope.setTag("paciente", formData.nombre);
+        scope.setTag("tutor_rut", formData.rut_tutor);
+        scope.setLevel("error");
+        Sentry.captureException(error);
+      });
     }
     setShowToast(true);
   };
