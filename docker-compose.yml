@@ -24,6 +24,8 @@ services:
     build:
       context: ./Backend
       dockerfile: Dockerfile
+    environment:
+      - TZ=America/Santiago
     env_file:
       - .env
     ports:

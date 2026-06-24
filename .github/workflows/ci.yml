@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build-and-test:
+
+    runs-on: ubuntu-latest
+
+
+    steps:
+
+      # Descargar repositorio
+      - name: copiar repositorio
+      - uses: actions/checkout@v4
+
+      # Configurar lenguaje principal
+      - name: build docker
+      - uses: docker compose build
+
+      - name: ejecutar docker
+      - uses: docker compose up
+
+
