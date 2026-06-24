@@ -17,13 +17,13 @@ jobs:
 
       # Descargar repositorio
       - name: copiar repositorio
-      - uses: actions/checkout@v4
+        uses: actions/checkout@v4
 
       # Configurar lenguaje principal
       - name: build docker
-      - uses: docker compose build
+        uses: docker compose build
 
       - name: ejecutar docker
-      - uses: docker compose up
+        uses: docker compose up
 
 
